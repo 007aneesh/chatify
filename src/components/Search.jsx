@@ -3,15 +3,17 @@ import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, where
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import { updateDoc } from "firebase/firestore"; 
-
+import ClipLoader from "react-spinners/ClipLoader";
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
 
   const handleSearch = async () => {
+    setLoading(true);
     const q = query(
       collection(db, "users"),
       where("displayName", "==", username)
@@ -24,6 +26,8 @@ const Search = () => {
       });
     } catch (err) {
       setErr(true);
+    } finally {
+      setLoading(false); // Hide the loader
     }
   };
 
@@ -73,7 +77,7 @@ const Search = () => {
 
   return (
     <div className="w-full border-b-2 border-white/20">
-      <div className="w-full bg-transparent mb-1 p-3">
+      <div className="w-full flex flex-row bg-transparent mb-1 p-3">
         <input
           type="text"
           className="outline-none bg-transparent w-full px-3 py-1"
@@ -84,20 +88,26 @@ const Search = () => {
         />
       </div>
       {err && <span>User not found!</span>}
-      {user && (
-        <div
-          onClick={handleSelect}
-          className="flex flex-row gap-x-2 lg:gap-x-4 items-center hover:cursor-pointer hover:bg-[#111928]/80 p-3"
-        >
-          <img
-            src={user.photoURL}
-            alt="user"
-            className="w-10 h-10 rounded-full"
-          />
-          <div className="">
-            <span className="text-xl font-semibold">{user.displayName}</span>
-          </div>
+      {loading ? (
+        <div className="flex items-center justify-center py-2">
+          <ClipLoader color="#fff" />
         </div>
+      ) : (
+        user && (
+          <div
+            onClick={handleSelect}
+            className="flex flex-row gap-x-2 lg:gap-x-4 items-center hover:cursor-pointer hover:bg-[#111928]/80 p-3"
+          >
+            <img
+              src={user.photoURL}
+              alt="user"
+              className="w-10 h-10 rounded-full"
+            />
+            <div className="">
+              <span className="text-xl font-semibold">{user.displayName}</span>
+            </div>
+          </div>
+        )
       )}
     </div>
   );
