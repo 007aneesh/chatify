@@ -87,7 +87,7 @@ const Search = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      {err && <span>User not found!</span>}
+      {err && <span className="flex justify-center items-center">User not found!</span>}
       {loading ? (
         <div className="flex items-center justify-center py-2">
           <ClipLoader color="#fff" />
