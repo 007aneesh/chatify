@@ -32,15 +32,18 @@ const ref = useRef();
           message.senderId === currentUser.uid ? "items-end" : "items-start"
         }`}
       >
-        <p
-          className={`  p-2  mt-1 ${
-            message.senderId === currentUser.uid
-              ? "bg-[#146DFF]/90 rounded-l-lg rounded-br-lg"
-              : " bg-gray-800 rounded-r-lg rounded-bl-lg "
-          }`}
-        >
-          {message.text}
-        </p>
+        {message.text && (
+          <p
+            className={`  p-2  mt-1 ${
+              message.senderId === currentUser.uid
+                ? "bg-[#146DFF]/90 rounded-l-lg rounded-br-lg"
+                : " bg-gray-800 rounded-r-lg rounded-bl-lg "
+            }`}
+          >
+            {message.text}
+          </p>
+        )}
+
         {message.img && <img src={message.img} alt="msg" className="w-2/3" />}
       </div>
     </div>

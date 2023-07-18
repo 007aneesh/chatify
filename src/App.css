@@ -1,19 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
-.sc {
-    scroll-behavior: smooth;
-}
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 .sc::-webkit-scrollbar {
-  width: 10px;
-}
-
-.sc::-webkit-scrollbar-track {
-  background-color: rgba(140, 96, 173, 0.3);
-  border-radius: 10px;
-}
-.sc::-webkit-scrollbar-thumb {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 0 2px inset black; 
+    display: none;
+    /* width: 10px; */
+  }
+@media only screen and (min-width: 1024px) {
+  .sc {
+    scroll-behavior: smooth;
+  }
+  
+/* 
+  .sc::-webkit-scrollbar-track {
+    background-color: rgba(140, 96, 173, 0.3);
+    border-radius: 10px;
+  }
+  .sc::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px inset black;
+  } */
 }
