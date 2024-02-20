@@ -21,6 +21,7 @@ const Login = () => {
         setLoading(false);
         navigate("/");
       } catch (err) {
+        setLoading(false);
         setErr(true);
       }
     };
@@ -50,9 +51,7 @@ const Login = () => {
               className="w-full bg-transparent outline-none border-b-2 border-white rounded-lg px-3 py-2 focus:bg-slate-900 transition-colors duration-300 "
             />
             {loading ? (
-              setTimeout(() => {
-                <ClipLoader color="#fff" />
-              }, 5000)
+              <ClipLoader color="#fff" />
             ) : (
               <button className="bg-[#c80337] px-4 py-2 rounded-xl hover:scale-105 transition ease-in-out duration-300">
                 Login

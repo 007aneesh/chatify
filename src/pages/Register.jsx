@@ -55,7 +55,7 @@ const Register = () => {
         });
       });
     } catch (err) {
-      console.log(err);
+      setLoading(false);
       setErr(true);
     }
   };
@@ -100,9 +100,7 @@ const Register = () => {
               Add an avatar
             </label>
             {loading ? (
-              setTimeout(() => {
-                <ClipLoader color="#fff" />;
-              }, 5000)
+              <ClipLoader color="#fff" />
             ) : (
               <button className="bg-[#c80337] px-4 py-2 rounded-xl hover:scale-105 transition ease-in-out duration-300">
                 Sign Up
